@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Visualization 4</title>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" type="text/css" href="CR_mod_style.css">
+	<script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+	<script type="text/javascript" rel='stylesheet' src="jquery.min.js"> </script>
+</head>
+<body class="noselect">
+<div class="center">
+
+	<span id="infoBox" style="     
+				width: 300px;
+				visibility: hidden;
+				position: absolute;
+				z-index: 2;
+				font-family: arial;
+				background-color: #FFFFFF;
+				border: 2px solid black;
+				text-align: center;
+				padding: 5px 5px 5px 5px;
+				margin-left: 175px;
+				margin-top: 121px;">
+		<p id="infoText">
+			Hello World!
+		</p>
+		<button type="button" onclick="$('#infoBox').css('visibility', 'hidden');
+									   $('#picBox').css('visibility', 'hidden');">Close</button>
+	</span>
+
+	<span id="picBox" style="
+							width: 150px;
+							visibility: hidden;
+							position: absolute;
+							z-index: 2;
+							font-family: arial;
+							background-color: #FFFFFF;
+							border: 2px solid black;
+							text-align: center;
+							padding: 5px 5px 5px 5px;
+							margin-left: 250px;
+							margin-top: 240px;">
+			<img id="imgsrc" src="NH3.png" alt="Molecule" height="92" width="130">
+	</span>
+
+	<div class="game_area">
+		<div class="level_container">
+			<div class="level one" id="level_one">
+				<div class="level_wrap">
+					Level 1
+				</div>
+			</div>
+			<div class="level two" id="level_two">
+				<div class="level_wrap">
+					Level 2
+				</div>
+				<img class="lock" id="lock_two" src="lock.png">
+			</div>
+			<div class="sound" id="sound">
+				<img class="sound_btn" id="sound_btn" src="sound_off.png">
+			</div>
+		</div>
+		<div class="top_atom_area_container">
+			<div class="before_container">
+				<div class="before_label"> BEFORE </div>
+				<div class="equation" id="reactants">
+					<select id="before1">
+						<option> </option>
+					</select>
+					<span class="formula" id="reactant1">H</span>
+					<div class="before_plus"> + </div>
+					<select id="before2">
+						<option> </option>
+					</select>
+					 <span class="formula"  id="reactant2">N<sub>2</sub></span>
+				</div>
+				<div class="reactant left" id="reactant1_box">
+					 <span id="reactant_1"> Reactant 1 </span>
+					 <div id="images_reactant1_box"> </div>
+				 </div>
+				<div class="reactant right" id="reactant2_box">
+					Reactant 2
+ 					<div id="images_reactant2_box"> </div>
+				</div>
+			</div>
+			<div class="control_container">
+				<div class="control_center">
+					<div> DURING </div>
+					<button class="break_bonds"> Break Bonds </button>
+					<button class="start_over"> Start Over </button>
+				</div>
+			</div>
+			<canvas id="main_canvas" height="220" width="500"></canvas>
+			<div class="output_formula"> X </div>
+			<img id='atom_display'>
+			<div class="after_container">
+				<div class="after_wrapper">
+					<div class="after_label"> AFTER </div>
+					<button class="check"> Check </button>
+				</div>
+				<div class="equation">
+					<select id="after1" disabled>
+
+					</select>
+					<span class="formula" id="product1">NH<sub>3</sub> </span>
+					<div class="after_plus"> + </div>
+					<select id="after2" disabled>
+						<option></option>
+					</select>
+					<span class="formula" id="product2"></span>
+				</div>
+				<div class="product left" id="product1_box"> <span class="label" id="product_1">Products </span> </div>
+				<div class="product right" id="product2_box"> <span class="label"> Product 2 </span> </div>
+			</div>
+		</div>
+		<div class="bottom_data_area_container">
+			<canvas id="graphH"  height="160" width="200" style="position:absolute; margin-left: 100px;"> </canvas>
+			<canvas id="graphN"  height="160" width="200" style="position:absolute; margin-left: 350px;"> </canvas>
+			<canvas id="graphCu" height="160" width="160" style="position:absolute; margin-left:   2px; visibility: hidden;"> </canvas>
+			<canvas id="graphFl" height="160" width="160" style="position:absolute; margin-left: 167px; visibility: hidden;"> </canvas>
+			<canvas id="graphH2" height="160" width="160" style="position:absolute; margin-left: 332px; visibility: hidden;"> </canvas>
+			<canvas id="graphO"  height="160" width="160" style="position:absolute; margin-left: 497px; visibility: hidden;"> </canvas>
+			<!--<span id="images"> </span>-->
+		</div>
+	</div>
+	<script type="text/javascript">
+		function saveL1(){
+			studentResponse1 = $('#freeResponse1').val();
+			studentResponse2 = $('#freeResponse2').val();
+			multipleChoice1 = $('input[name=q1]:checked', '#questionOne').val()
+			multipleChoice2 = $('input[name=q3]:checked', '#questionThree').val()
+		}
+
+	</script>
+	<div id="QuestionaireL1" class="questionaire" style="visibility: hidden;">
+		<p class="question">
+		1. What happened to the number of Hydrogen and Nitrogen <b>atoms</b> before and after the reaction?
+		</p>
+		<form id = "questionOne" action="" style="margin: 15px;">
+			<input type="radio" name="q1" value="increased"> The number of Hydrogen and Nitrogen atoms increased after the reaction.<br>
+			<input type="radio" name="q1" value="decrease"> The number of Hydrogen and Nitrogen atoms decreased after the reaction.<br>
+			<input type="radio" name="q1" value="no_change"> The number of Hydrogen and Nitrogen atoms stayed the same after the reaction.<br>
+		</form>
+
+		<p class="question">
+		2. What evidence from the graph can be used to support the idea you chose in Q1?
+		</p>
+		<textarea id = 'freeResponse1' class="freeResponse" name="freeResponse1" cols="40" rows="5"></textarea>
+		<p class="question">
+		3. Did the chemical reaction create new <b>ATOMS</b>?
+		</p>
+		<form id = "questionThree" action="" style="margin: 15px;">
+			<input type="radio" name="q3" value="yes"> Yes<br>
+			<input type="radio" name="q3" value="no"> No<br>
+		</form>
+		
+		<p>
+		4. What evidence from your model and graph can be used to support the idea you chose in Q3?
+		</p>
+		<textarea id = 'freeResponse2' class="freeResponse" name="freeResponse2" cols="40" rows="5"></textarea>
+		<br>
+		<button class="submit" style="position: absolute; margin-left: 225px;" type="button" onclick="saveL1(); numTimesSaveL1++; saveStateToWISE('Saved L1'); ">Save</button>
+		<button class="submit" style="position: absolute; margin-left: 330px;" type="button" onclick="
+		if($('#freeResponse1').val().length < 15){
+			$('#moreTextNeededBox').css('visibility', 'visible');
+		}
+		if($('#freeResponse2').val().length < 15){
+			$('#moreTextNeededBox').css('visibility', 'visible');
+		}
+		if($('input:radio[name=' + 'q1' + ']:checked').length <= 0){
+			$('#moreTextNeededBox').css('visibility', 'visible');
+		}
+		if($('input:radio[name=' + 'q3' + ']:checked').length <= 0){
+			$('#moreTextNeededBox').css('visibility', 'visible');
+		}
+		// if(!$('#questionOne input:selected').length){
+		// 	$('#moreTextNeededBox').css('visibility', 'visible');
+		// }
+		// if(!$('#questionThree input:selected').length){
+		// 	$('#moreTextNeededBox').css('visibility', 'visible');
+		// }
+		else{
+			$('#confirmationBox').css('visibility', 'visible');
+		}
+		">Submit</button>
+	</div>
+	<div id="confirmationBox" style="position: absolute; z-index: 4; margin-left: 235px; margin-top: 225px; width: 200px; height: 120px; border: 2px solid black; background-color: #FFF; text-align: center; visibility: hidden;">
+		<p>
+			Are you sure you want to submit?
+		</p>
+		<br>
+		<button type="button" style="float: none;" onclick="
+		saveL1(); 
+		numTimesSubmitL1++; 
+		saveStateToWISE('Submitted L1'); 
+		$('#QuestionaireL1').css('visibility', 'hidden'); $('#QuestionaireL1').css('margin-top', '-500px'); $('#confirmationBox').css('visibility', 'hidden'); submitLvlOne();">Yes</button>
+		<button type="button" style="float: none;" onclick="$('#confirmationBox').css('visibility', 'hidden');">No</button>
+	</div>
+	
+	
+	
+	
+	
+	<div id="moreTextNeededBox" style="position: absolute; z-index: 4; margin-left: 235px; margin-top: 225px; width: 200px; height: 120px; border: 2px solid black; background-color: #FFF; text-align: center; visibility: hidden;">
+		<p>
+			Please fill out the multiple choice and/or write more in the free response.
+		</p>
+		<br>
+		<button type="button" style="float: none;" onclick="$('#moreTextNeededBox').css('visibility', 'hidden');">Okay</button>
+	</div>
+</div>
+</body>
+<footer>
+	<script type="text/javascript" rel='stylesheet' src="CR_mod_code.js"></script>
+	<!--<script type="text/javascript" rel='stylesheet' src="design.js"></script>-->
+</footer>
+</html>
