@@ -17,7 +17,7 @@ var defaultText = "Use the drop-down menus to add reactants to the system.";
 var inCorrectAnswerText = "Your equation is not balanced. You need to make sure that there are no unreacted (leftover) atoms in the workspace.";
 var incorrectProduct = "Your product is not correct. If you need to remember what the products look like, you can hover over the <Products>.";
 var unBondedText = "What is necessary to start a chemical reaction? How can you break bonds between atoms?"
-var incorrectMolecule = "You can’t drop that here. If you need to remember what the products look like, you can hover over the “Products”.";
+var incorrectMolecule = "You canï¿½t drop that here. If you need to remember what the products look like, you can hover over the ï¿½Productsï¿½.";
 var incompletedLevel = "You need to finish this leve before moving to the next level."; // X is Before Y (Letters are switched with appropriate numbers)
 var correctText = "Your equation is balanced. The mass of the reactants is the same as the mass of the products. You have unlocked the next level.";
 var breakSound = new Audio("sounds/snap.mp3");
@@ -761,14 +761,14 @@ function bond(part_a, part_b){  //bonds two particles based on selected situatio
 							
 							if (!productMade) {
 								numTimesCorrectProductMade++; 
-								saveStateToWISE("Correct product made"); 
+								//saveStateToWISE("Correct product made"); 
 								updateInfoBox("You made a correct product. Drag it to the <b>Products</b> box.");		
 							}
 							break;
 
 						default:
 							numTimesTriedToBond++; 
-							saveStateToWISE("Tried to bond without breaking bonds first")
+							//saveStateToWISE("Tried to bond without breaking bonds first")
 							setInstructionTo("You cannot combine them together. Try again.");
 							updateInfoBox("What should happen before atoms can be combined?");
 							bond = false;

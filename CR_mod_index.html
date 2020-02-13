@@ -160,7 +160,7 @@
 		</p>
 		<textarea id = 'freeResponse2' class="freeResponse" name="freeResponse2" cols="40" rows="5"></textarea>
 		<br>
-		<button class="submit" style="position: absolute; margin-left: 225px;" type="button" onclick="saveL1(); numTimesSaveL1++; saveStateToWISE('Saved L1'); ">Save</button>
+		<button class="submit" style="position: absolute; margin-left: 225px;" type="button" onclick="saveL1(); numTimesSaveL1++; ">Save</button>
 		<button class="submit" style="position: absolute; margin-left: 330px;" type="button" onclick="
 		if($('#freeResponse1').val().length < 15){
 			$('#moreTextNeededBox').css('visibility', 'visible');
@@ -193,7 +193,6 @@
 		<button type="button" style="float: none;" onclick="
 		saveL1(); 
 		numTimesSubmitL1++; 
-		saveStateToWISE('Submitted L1'); 
 		$('#QuestionaireL1').css('visibility', 'hidden'); $('#QuestionaireL1').css('margin-top', '-500px'); $('#confirmationBox').css('visibility', 'hidden'); submitLvlOne();">Yes</button>
 		<button type="button" style="float: none;" onclick="$('#confirmationBox').css('visibility', 'hidden');">No</button>
 	</div>
